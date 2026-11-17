@@ -7,67 +7,67 @@ return {
     },
     event = "VeryLazy",
     enabled = true,
-    opts = function(_, opts)
-      opts.routes = opts.routes or {}
-      opts.presets = opts.presets or {}
-
-      table.insert(opts.routes, {
-        filter = {
-          event = "msg_show",
-          find = "%d+L, %d+B",
+    opts = {
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            find = "%d+L, %d+B",
+          },
+          view = "mini",
+          opts = { skip = true },
         },
-        view = "mini",
-        opts = { skip = true },
-      })
-      opts.presets.lsp_doc_border = true
-      opts.presets.inc_rename = false
-      opts.lsp = {
+      },
+      lsp = {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
         },
-      }
-      opts.presets = {
+      },
+      presets = {
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = true, -- enables an input dialog for inc-rename.nvim
+        inc_rename = false, -- inc-rename.nvim is not installed
         lsp_doc_border = true, -- add a border to hover docs and signature help
-      }
-      opts.keys = {
-        {
-          "<S-Enter>",
-          function()
-            require("noice").redirect(vim.fn.getcmdline())
-          end,
-          mode = "c",
-          desc = "Redirect Cmdline",
-        },
-        {
-          "<c-f>",
-          function()
-            if not require("noice.lsp").scroll(4) then
-              return "<c-f>"
-            end
-          end,
-          silent = true,
-          expr = true,
-          desc = "Scroll forward",
-        },
-        {
-          "<c-b>",
-          function()
-            if not require("noice.lsp").scroll(-4) then
-              return "<c-b>"
-            end
-          end,
-          silent = true,
-          expr = true,
-          desc = "Scroll backward",
-        },
-      }
-    end,
+      },
+    },
+    -- keys belong on the plugin spec, not inside opts, or lazy.nvim ignores them
+    keys = {
+      {
+        "<S-Enter>",
+        function()
+          require("noice").redirect(vim.fn.getcmdline())
+        end,
+        mode = "c",
+        desc = "Redirect Cmdline",
+      },
+      {
+        "<c-f>",
+        function()
+          if not require("noice.lsp").scroll(4) then
+            return "<c-f>"
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll forward",
+        mode = { "i", "n", "s" },
+      },
+      {
+        "<c-b>",
+        function()
+          if not require("noice.lsp").scroll(-4) then
+            return "<c-b>"
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll backward",
+        mode = { "i", "n", "s" },
+      },
+    },
   },
 
   -- dressing

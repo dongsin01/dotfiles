@@ -41,10 +41,12 @@ return {
     opts = { signs = false },
   },
   {
-    -- high-performance color highlighter
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end,
+    -- Paint hex/rgb/hsl/CSS-variable colors as backgrounds
+    "brenoprata10/nvim-highlight-colors",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      render = "background",
+      enable_tailwind = false,
+    },
   },
 }
