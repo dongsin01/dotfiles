@@ -1,26 +1,82 @@
-lines.linewidth: 2.0 # line width in points
-lines.linestyle: solid # solid line
-lines.color: C0 # has no affect on plot(); see axes.prop_cycle
+## PRL figure style (single column, 86 mm)
+## Not covered here (per figure): panel labels (a)/(b), E_F and
+## high-symmetry lines, markers with markevery, caption.
 
-font.family: serif
-font.serif: Times New Roman, DejaVu Serif
-font.style: normal
-font.variant: normal
-font.weight: medium
-font.stretch: normal
-font.size: 16.0
-
-mathtext.fontset: custom
-mathtext.rm: Times New Roman
-mathtext.it: Times New Roman:italic
-mathtext.bf: Times New Roman:bold
-
-legend.loc: best
-legend.frameon: True # if True, draw the legend on a background patch
-legend.framealpha: 0.8 # legend patch transparency
-legend.facecolor: inherit # inherit from axes.facecolor; or color spec
-legend.edgecolor: 0.8 # background patch boundary color
-
-figure.figsize: 6, 6
-figure.dpi: 200 # figure dots per inch
+## Figure: 86 mm wide, checked at final size
+figure.figsize: 3.386, 2.6  # 8.6 cm x ~6.6 cm; set height per figure
+figure.dpi: 200             # screen preview only; saved size stays 86 mm
+figure.facecolor: white
 figure.constrained_layout.use: True
+figure.constrained_layout.h_pad: 0.02
+figure.constrained_layout.w_pad: 0.02
+
+## Fonts: Times-like serif, italic variables, upright units via \mathrm
+font.family: serif
+font.serif: Times New Roman, STIX Two Text, Times, DejaVu Serif
+font.weight: normal
+font.size: 9
+mathtext.fontset: stix
+mathtext.default: it
+axes.unicode_minus: True
+
+## Axes: four-sided frame, white background, no grid
+axes.facecolor: white
+axes.edgecolor: black
+axes.linewidth: 0.6
+axes.spines.left: True
+axes.spines.bottom: True
+axes.spines.top: True
+axes.spines.right: True
+axes.grid: False
+axes.labelsize: 9
+axes.titlesize: 9
+axes.labelpad: 2.0
+axes.formatter.use_mathtext: True
+
+## Okabe-Ito palette, color paired with line style
+## spin up/down = 0072B2/D55E00; orbital s/p/d/f = 0072B2/D55E00/009E73/CC79A7
+axes.prop_cycle: (cycler(color=['0072B2', 'D55E00', '009E73', 'CC79A7', 'E69F00', '56B4E9', '000000']) + cycler(linestyle=['-', '--', ':', '-.', (0, (5, 1)), (0, (3, 1, 1, 1, 1, 1)), (0, (1, 1))]))
+
+## Lines
+lines.linewidth: 1.0
+lines.markersize: 3.5
+lines.markeredgewidth: 0.6
+
+## Ticks: outside, left and bottom only
+xtick.direction: out
+ytick.direction: out
+xtick.top: False
+xtick.bottom: True
+ytick.left: True
+ytick.right: False
+xtick.labelsize: 8
+ytick.labelsize: 8
+xtick.major.size: 3.0
+ytick.major.size: 3.0
+xtick.minor.size: 1.5
+ytick.minor.size: 1.5
+xtick.major.width: 0.6
+ytick.major.width: 0.6
+xtick.minor.width: 0.5
+ytick.minor.width: 0.5
+xtick.major.pad: 2.0
+ytick.major.pad: 2.0
+
+## Legend: inside the panel, no frame, no shadow
+legend.loc: best
+legend.frameon: False
+legend.shadow: False
+legend.fontsize: 8
+legend.handlelength: 2.0
+legend.handletextpad: 0.4
+legend.borderaxespad: 0.4
+legend.labelspacing: 0.3
+
+## Output: vector PDF by default, rasters at 600 dpi, fonts embedded
+savefig.format: pdf
+savefig.dpi: 600
+savefig.facecolor: white
+savefig.transparent: False
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none
