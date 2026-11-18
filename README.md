@@ -57,7 +57,7 @@ brew install stow
 sudo apt install stow
 
 # Clone the repository
-git clone https://github.com/dongsin4869/dotfiles.git ~/dotfiles
+git clone https://github.com/dongsin01/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 # Example: apply nvim
