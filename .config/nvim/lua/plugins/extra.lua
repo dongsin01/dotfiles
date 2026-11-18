@@ -9,6 +9,11 @@ return {
     "tpope/vim-sleuth",
   },
   {
+    -- :Bdelete closes a buffer without closing its window (used by <leader>x)
+    "moll/vim-bbye",
+    cmd = { "Bdelete", "Bwipeout" },
+  },
+  {
     -- Powerful Git integration for Vim
     "tpope/vim-fugitive",
   },

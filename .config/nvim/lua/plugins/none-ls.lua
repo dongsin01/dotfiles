@@ -15,7 +15,6 @@ return {
       ensure_installed = {
         "checkmake",
         "prettier", -- ts/js formatter
-        "eslint_d", -- ts/js linter
         "shfmt",
         -- 'stylua', -- lua formatter; Already installed via Mason
         -- 'ruff', -- Python linter and formatter; Already installed via Mason
@@ -45,7 +44,14 @@ return {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              vim.lsp.buf.format({ async = false })
+              -- only none-ls formats, so other attached servers (ruff, jsonls, ...) don't format twice
+              vim.lsp.buf.format({
+                async = false,
+                bufnr = bufnr,
+                filter = function(c)
+                  return c.name == "null-ls"
+                end,
+              })
             end,
           })
         end
